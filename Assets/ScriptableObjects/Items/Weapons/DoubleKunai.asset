@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed3712cc1cf3164f8314a215567619f, type: 3}
+  m_Name: DoubleKunai
+  m_EditorClassIdentifier: 
+  _id: kunai_2
+  _name: Kunai
+  _description: throw 2 kunai forward
+  _icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  _stats:
+    health: 0
+    damage: 2
+    defence: 0
+    attackRate: 0
+    movementSpeed: 0
+  _functions:
+  - {fileID: 11400000, guid: 31c17cf93c14d244a9078d6a69581e17, type: 2}
+  _weaponSAO: {fileID: 0}
