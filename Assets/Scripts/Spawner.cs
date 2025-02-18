@@ -8,10 +8,8 @@ public class Spawner : MonoBehaviour
     private float _excludeRadius;
     [SerializeField]
     private float _spawnElapse;
-    [SerializeField]
-    private int _spawnAmount;
-    [SerializeField]
-    private GameObject _spawnObject;
+    
+    public WaveSpawnerSAO waveSpawner;
 
     private void Update()
     {
@@ -19,7 +17,7 @@ public class Spawner : MonoBehaviour
         if (_spawnElapse <= 0)
         {
             Spawn();
-            _spawnElapse = 4f;
+            _spawnElapse = waveSpawner.SpawnDelay;
         }
     }
 
@@ -33,9 +31,9 @@ public class Spawner : MonoBehaviour
 
     private void Spawn()
     {
-        for (int i = 0; i < _spawnAmount; i++)
+        for (int i = 0; i < waveSpawner.SpawnAmount; i++)
         {
-            GameObject spawnObject = Instantiate(_spawnObject);
+            GameObject spawnObject = Instantiate(waveSpawner.Enemy);
             spawnObject.transform.position = GetValidSpawnPosition();
         }
     }

@@ -7,6 +7,11 @@ public class Follower : MonoBehaviour
     [SerializeField]
     private float _speed = 10;
 
+    private void Awake()
+    {
+        _target = FindFirstObjectByType<Player>(FindObjectsInactive.Include).transform;
+    }
+
     private void Update()
     {
         Vector3 target = _target.position;
