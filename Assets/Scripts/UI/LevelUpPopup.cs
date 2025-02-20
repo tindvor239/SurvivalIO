@@ -8,14 +8,13 @@ public class LevelUpPopup : MonoBehaviour
     [SerializeField]
     private List<WeaponUpgradeView> _weaponUpgradeViews = new();
     [SerializeField]
-    private Animation _animation;
+    private Animator _animator;
 
     private List<WeaponSAO> _tempWeapons = new();
 
     public void Show()
     {
-        _animation["ShowWindow"].speed = Time.unscaledTime;
-        _animation.Play("ShowWindow");
+        _animator.Play("ShowWindow");
         Time.timeScale = 0;
         List<WeaponSAO> randomUpgradeWeapons = new();
         for (int i = 0; i < (_levelUpWeapons.Count > 3 ? 3 : _levelUpWeapons.Count); i++)
@@ -65,8 +64,7 @@ public class LevelUpPopup : MonoBehaviour
     public void Close()
     {
         Time.timeScale = 1f;
-        _animation["CloseWindow"].speed = Time.unscaledTime;
-        _animation.Play("CloseWindow");
+        _animator.Play("CloseWindow");
     }
 
     private void OnUpgrade(WeaponSAO weaponSAO)

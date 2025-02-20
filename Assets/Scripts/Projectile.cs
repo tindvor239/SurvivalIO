@@ -29,12 +29,15 @@ public class Projectile : MonoBehaviour
             if (component is ICharacteristic)
             {
                 ICharacteristic characteristic = component as ICharacteristic;
-                characteristic.TakeDamage(damage);
                 if (component is IDropable)
                 {
                     IDropable dropable = component as IDropable;
-                    dropable.Drop();
+                    if (characteristic.Data.Stats.health - damage <= 0)
+                    {
+                        dropable.Drop();
+                    }
                 }
+                characteristic.TakeDamage(damage);
                 return;
             }
         }

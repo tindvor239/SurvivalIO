@@ -31,14 +31,27 @@ public class SpawnerManager : MonoBehaviour
         }
     }
 
+    private void StopSpawn()
+    {
+        foreach (Spawner spawn in spawners)
+        {
+            spawn.canSpawn = false;
+        }
+    }
+
     private void Update()
     {
         elapseTime -= Time.deltaTime;
 
-        if (elapseTime <= 0 && waveIndex < mapSAO.Waves.Length)
+        if (elapseTime <= 0 && waveIndex < mapSAO.Waves.Length - 1)
         {
             waveIndex++;
             Spawn();
+        }
+
+        if (elapseTime <= 0 && waveIndex == mapSAO.Waves.Length - 1)
+        {
+            StopSpawn();
         }
     }
 }

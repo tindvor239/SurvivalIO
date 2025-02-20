@@ -1,8 +1,9 @@
 using RPG.Character;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
-public class FollowEnemy : MonoBehaviour, ICharacteristic, IDropable
+public class FollowEnemy : MonoBehaviour, ICharacteristic, IDropable, IDeathable
 {
     [SerializeField]
     private NavMeshAgent _navMeshAgent;
@@ -14,11 +15,16 @@ public class FollowEnemy : MonoBehaviour, ICharacteristic, IDropable
     private DropItemSAO _dropItem;
     [SerializeField]
     private Stats _currentStats;
+    [Space]
+    [SerializeField]
+    private UnityEvent<IDeathable> onDeath = new();
 
     public Stats CurrentStats => _currentStats;
     public CharacterStatSAO Data => _data;
 
     public DropItemSAO DropItem => throw new System.NotImplementedException();
+
+    public UnityEvent<IDeathable> OnDeath => onDeath;
 
     public void TakeDamage(float damageDeal)
     {
@@ -26,6 +32,7 @@ public class FollowEnemy : MonoBehaviour, ICharacteristic, IDropable
         if (_currentStats.health <= 0)
         {
             Destroy(gameObject);
+            onDeath?.Invoke(this);
         }
     }
 

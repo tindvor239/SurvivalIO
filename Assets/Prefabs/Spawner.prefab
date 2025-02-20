@@ -48,7 +48,8 @@ MonoBehaviour:
   _spawnRadius: 50
   _excludeRadius: 30
   _spawnElapse: 0
-  _waveSpawner: {fileID: 0}
+  canSpawn: 1
+  waveSpawner: {fileID: 0}
 --- !u!114 &6598780335043922104
 MonoBehaviour:
   m_ObjectHideFlags: 0

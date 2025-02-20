@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
             Vector3 moveDirection = new Vector3(moveValue.x, 0, moveValue.y);
             float magnitude = Mathf.Clamp01(moveDirection.magnitude) * _character.CurrentStats.movementSpeed;
             moveDirection.Normalize();
-            _characterController.Move(moveDirection * magnitude);
+            _characterController.Move(moveDirection * magnitude * Time.timeScale);
             transform.position = new Vector3(transform.position.x, y, transform.position.z);
 
             if (moveDirection != Vector3.zero)

@@ -15,4 +15,4 @@ MonoBehaviour:
   id: wave_spawner_01
   spawnDelay: 3
   enemy: {fileID: 834481772021215492, guid: ff5a7b201be6abb41b1526fd097594b6, type: 3}
-  spawnAmount: 0
+  spawnAmount: 1

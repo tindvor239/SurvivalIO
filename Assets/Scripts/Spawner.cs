@@ -8,11 +8,17 @@ public class Spawner : MonoBehaviour
     private float _excludeRadius;
     [SerializeField]
     private float _spawnElapse;
-    
+
+    public bool canSpawn;
     public WaveSpawnerSAO waveSpawner;
 
     private void Update()
     {
+        if (!canSpawn)
+        {
+            return;
+        }
+        
         _spawnElapse -= Time.deltaTime;
         if (_spawnElapse <= 0)
         {
@@ -34,6 +40,7 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < waveSpawner.SpawnAmount; i++)
         {
             GameObject spawnObject = Instantiate(waveSpawner.Enemy);
+            Debug.Log(spawnObject);
             spawnObject.transform.position = GetValidSpawnPosition();
         }
     }
