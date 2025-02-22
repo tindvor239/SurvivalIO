@@ -23,6 +23,10 @@ public class Spawner : MonoBehaviour
         if (_spawnElapse <= 0)
         {
             Spawn();
+            if (waveSpawner.Type == WaveSpawnerSAO.SpawnType.Boss)
+            {
+                canSpawn = false;
+            }
             _spawnElapse = waveSpawner.SpawnDelay;
         }
     }
@@ -40,7 +44,7 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < waveSpawner.SpawnAmount; i++)
         {
             GameObject spawnObject = Instantiate(waveSpawner.Enemy);
-            Debug.Log(spawnObject);
+            this.PostEvent(EventID.OnEnemySpawn);
             spawnObject.transform.position = GetValidSpawnPosition();
         }
     }

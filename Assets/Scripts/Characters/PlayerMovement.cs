@@ -25,9 +25,13 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector2 moveValue = _move.ReadValue<Vector2>();
             Vector3 moveDirection = new Vector3(moveValue.x, 0, moveValue.y);
-            float magnitude = Mathf.Clamp01(moveDirection.magnitude) * _character.CurrentStats.movementSpeed;
+            float speed = _character.CurrentStats.movementSpeed;
             moveDirection.Normalize();
-            _characterController.Move(moveDirection * magnitude * Time.timeScale);
+            #if !UNITY_EDITOR
+            speed /= 10f;
+            #endif
+            Debug.Log($"Velocity {moveDirection * speed * Time.timeScale}");
+            _characterController.Move(moveDirection * speed * Time.timeScale);
             transform.position = new Vector3(transform.position.x, y, transform.position.z);
 
             if (moveDirection != Vector3.zero)

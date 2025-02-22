@@ -66,6 +66,10 @@ public class Player : MonoBehaviour, ICharacteristic, IPrepared, IPickupable, IL
     {
         _currentStats.health -= damageDeal;
         _healthBar.OnHealthChanged?.Invoke(_currentStats.health);
+        if (_currentStats.health <= 0)
+        {
+            this.PostEvent(EventID.OnPlayerDeath);
+        }
     }
 
     public void PickUp(DropItemSAO item, Action onPickupCallBack)

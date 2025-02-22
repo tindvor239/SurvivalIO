@@ -1,21 +1,19 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class LevelUpPopup : MonoBehaviour
+public class LevelUpPopup : UIPopup
 {
     [SerializeField]
     private List<WeaponSAO> _levelUpWeapons = new();
     [SerializeField]
     private List<WeaponUpgradeView> _weaponUpgradeViews = new();
-    [SerializeField]
-    private Animator _animator;
 
     private List<WeaponSAO> _tempWeapons = new();
 
-    public void Show()
+    public override void Show()
     {
-        _animator.Play("ShowWindow");
         Time.timeScale = 0;
+        base.Show();
         List<WeaponSAO> randomUpgradeWeapons = new();
         for (int i = 0; i < (_levelUpWeapons.Count > 3 ? 3 : _levelUpWeapons.Count); i++)
         {
@@ -61,10 +59,10 @@ public class LevelUpPopup : MonoBehaviour
         }
     }
 
-    public void Close()
+    public override void Close()
     {
         Time.timeScale = 1f;
-        _animator.Play("CloseWindow");
+        base.Close();
     }
 
     private void OnUpgrade(WeaponSAO weaponSAO)

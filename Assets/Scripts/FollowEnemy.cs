@@ -31,7 +31,9 @@ public class FollowEnemy : MonoBehaviour, ICharacteristic, IDropable, IDeathable
         _currentStats.health -= damageDeal;
         if (_currentStats.health <= 0)
         {
+            Drop();
             Destroy(gameObject);
+            this.PostEvent(EventID.OnEnemyDeath);
             onDeath?.Invoke(this);
         }
     }
@@ -65,5 +67,6 @@ public class FollowEnemy : MonoBehaviour, ICharacteristic, IDropable, IDeathable
     public void Drop()
     {
         _dropItem.Drop(transform.position);
+        Debug.Log("Dropped");
     }
 }

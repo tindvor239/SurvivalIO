@@ -7,8 +7,10 @@ public enum EventID
     None = 0,
     OnEnemyDeath,
     OnEnemySpawn,
-    OnHelicopterDead,
-    OnHelicopterEscaped,
+    OnLastWaves,
+    OnWin,
+    OnGameOver,
+    OnPlayerDeath
 }
 
 public class SignalDispatcher

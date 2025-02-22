@@ -15,8 +15,6 @@ public class SpawnerManager : MonoBehaviour
 
     private void Spawn()
     {
-        elapseTime = mapSAO.Waves[waveIndex].WaveTime;
-
         foreach (Spawner spawn in spawners)
         {
             Destroy(spawn.gameObject);
@@ -29,6 +27,8 @@ public class SpawnerManager : MonoBehaviour
             spawner.waveSpawner = mapSAO.Waves[waveIndex].WaveSpawners[i];
             spawners.Add(spawner);
         }
+
+        elapseTime = mapSAO.Waves[waveIndex].WaveTime;
     }
 
     private void StopSpawn()
@@ -52,6 +52,7 @@ public class SpawnerManager : MonoBehaviour
         if (elapseTime <= 0 && waveIndex == mapSAO.Waves.Length - 1)
         {
             StopSpawn();
+            this.PostEvent(EventID.OnLastWaves);
         }
     }
 }

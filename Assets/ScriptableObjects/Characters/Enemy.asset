@@ -19,4 +19,4 @@ MonoBehaviour:
     damage: 1
     defence: 0
     attackRate: 1
-    movementSpeed: 3
+    movementSpeed: 4
